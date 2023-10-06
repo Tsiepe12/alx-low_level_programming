@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Check if the CFILE variable is set
+if [ -z "$CFILE" ]; then
+  echo "Error: The CFILE variable is not set."
+  exit 1
+fi
+
+# Extract the file name without the extension
+FILENAME="${CFILE%.c}"
+
+# Compile the C file and create the executable "cisfun"
+gcc "$CFILE" -o cisfun
+
+# Check if the compilation was successful
+if [ $? -eq 0 ]; then
+  echo "Compilation completed successfully. Executable 'cisfun' created."
+else
+  echo "Error: Compilation failed."
+fi

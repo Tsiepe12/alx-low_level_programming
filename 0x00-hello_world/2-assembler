@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Check if the CFILE variable is set
+if [ -z "$CFILE" ]; then
+  echo "Error: The CFILE variable is not set."
+  exit 1
+fi
+
+# Extract the file name without the extension
+FILENAME="${CFILE%.c}"
+
+# Generate the assembly code and save it as a .s file
+gcc -S "$CFILE" -o "$FILENAME.s"
+
+# Check if the assembly generation was successful
+if [ $? -eq 0 ]; then
+  echo "Assembly code generation completed successfully. Output saved as '$FILENAME.s'."
+else
+  echo "Error: Assembly code generation failed."
+fi
